@@ -16,7 +16,7 @@ export default function Home() {
     <main className="min-h-screen bg-[#f5edd8] text-[#1a1208]">
 
       {/* HEADER */}
-      <div className="bg-[#3b1f0a] px-6 py-10 text-center border-b-4 border-[#c8973a]">
+      <div className="bg-[#56A0D3] px-6 py-10 text-center border-b-4 border-[#003087]">
         <p className="text-[#c8973a] text-xs tracking-[0.3em] uppercase mb-2 font-mono">
           Chapel Hill, NC
         </p>
@@ -176,7 +176,7 @@ export default function Home() {
       )}
 
       {/* FOOTER */}
-      <div className="bg-[#3b1f0a] px-6 py-8 text-center border-t-2 border-[#c8973a]">
+      <div className="bg-[#56A0D3] px-6 py-8 text-center border-t-2 border-[#003087]">
         <p className="font-serif italic text-[#e8d9b8] text-sm opacity-70 leading-relaxed">
           A walking passport for Franklin Street — Carrboro to the Planetarium.
         </p>

@@ -87,7 +87,7 @@ export default function StopPage({ params }: { params: Promise<{ slug: string }>
         className="px-6 py-14 text-center border-b-4"
         style={{
           backgroundColor: shop.selloColor,
-          borderBottomColor: '#c8973a',
+          borderBottomColor: '#003087',
         }}
       >
         <Link
@@ -435,7 +435,7 @@ export default function StopPage({ params }: { params: Promise<{ slug: string }>
       </div>
 
       {/* FOOTER */}
-      <div className="bg-[#3b1f0a] px-6 py-6 text-center border-t-2 border-[#c8973a]">
+      <div className="bg-[#56A0D3] px-6 py-6 text-center border-t-2 border-[#003087]">
         <Link
           href="/passport"
           className="font-mono text-xs text-[#c8973a] opacity-60

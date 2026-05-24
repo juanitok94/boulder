@@ -30,7 +30,7 @@
     "passportStop": 1,
     "passportType": "core",
     "streetSide": "south",
-    "selloColor": "#1A3A6A",
+    "selloColor": "#56A0D3",
     "selloPersonality": "Indie venue marquee stamp, worn and beloved, Carrboro pride",
     "hygge": false,
     "stamp": {
@@ -90,7 +90,7 @@
     "passportStop": 2,
     "passportType": "core",
     "streetSide": "north",
-    "selloColor": "#8B3A2E",
+    "selloColor": "#56A0D3",
     "selloPersonality": "Burger counter stamp, West Franklin casualness",
     "hygge": false,
     "stamp": {
@@ -150,7 +150,7 @@
     "passportStop": 3,
     "passportType": "core",
     "streetSide": "south",
-    "selloColor": "#2A4A2A",
+    "selloColor": "#56A0D3",
     "selloPersonality": "James Beard nominated, West Franklin dignity, lantern glow mark",
     "hygge": true,
     "hyggeFactor": {
@@ -218,7 +218,7 @@
     "passportStop": 4,
     "passportType": "core",
     "streetSide": "north",
-    "selloColor": "#1A3A6A",
+    "selloColor": "#56A0D3",
     "selloPersonality": "Serious cocktail bar stamp, bottles and brass, adult Franklin St",
     "hygge": false,
     "stamp": {
@@ -279,7 +279,7 @@
     "passportStop": 5,
     "passportType": "core",
     "streetSide": "south",
-    "selloColor": "#5C3A1A",
+    "selloColor": "#56A0D3",
     "selloPersonality": "Books and chocolate stamp, Franklin St renewal energy",
     "hygge": true,
     "hyggeFactor": {
@@ -347,7 +347,7 @@
     "passportStop": 6,
     "passportType": "core",
     "streetSide": "north",
-    "selloColor": "#8B5E3A",
+    "selloColor": "#56A0D3",
     "selloPersonality": "Century-old diner stamp, soda fountain bones, alumni time machine",
     "hygge": true,
     "hyggeFactor": {
@@ -415,7 +415,7 @@
     "passportStop": 7,
     "passportType": "core",
     "streetSide": "south",
-    "selloColor": "#2A4A2A",
+    "selloColor": "#56A0D3",
     "selloPersonality": "Soda fountain stamp, 1923 vintage, photo-covered walls",
     "hygge": false,
     "stamp": {
@@ -476,7 +476,7 @@
     "passportStop": 8,
     "passportType": "core",
     "streetSide": "north",
-    "selloColor": "#2C1810",
+    "selloColor": "#56A0D3",
     "selloPersonality": "Franklin and Columbia corner stamp, rooftop brewery, 1994",
     "hygge": false,
     "stamp": {
@@ -537,7 +537,7 @@
     "passportStop": 9,
     "passportType": "core",
     "streetSide": "west",
-    "selloColor": "#1A3A6A",
+    "selloColor": "#56A0D3",
     "selloPersonality": "UNC art museum stamp, campus edge, free admission",
     "hygge": false,
     "stamp": {
@@ -598,7 +598,7 @@
     "passportStop": 10,
     "passportType": "core",
     "streetSide": "south",
-    "selloColor": "#1A3A6A",
+    "selloColor": "#56A0D3",
     "selloPersonality": "Planetarium dome stamp, East Franklin landmark, NASA training site",
     "hygge": false,
     "stamp": {

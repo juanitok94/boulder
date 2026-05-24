@@ -50,7 +50,7 @@ export default function PassportPage() {
     <main className="min-h-screen bg-[#f5edd8] text-[#1a1208]">
 
       {/* HEADER */}
-      <div className="bg-[#3b1f0a] px-6 py-8 text-center border-b-4 border-[#c8973a]">
+      <div className="bg-[#56A0D3] px-6 py-8 text-center border-b-4 border-[#003087]">
         <Link
           href="/"
           className="font-mono text-[10px] tracking-widest text-[#c8973a] opacity-60
@@ -173,7 +173,7 @@ export default function PassportPage() {
       {/* COMPOSTELA — 10/10 completion message */}
       {coreStamped === 10 && (
         <div className="max-w-lg mx-auto px-6 pb-8">
-          <div className="p-6 bg-[#3b1f0a] border-2 border-[#c8973a] rounded-sm text-center">
+          <div className="p-6 bg-[#56A0D3] border-2 border-[#003087] rounded-sm text-center">
             <p className="text-3xl mb-2">⭐</p>
             <p className="font-serif text-xl font-bold text-[#c8973a]">
               True Local
@@ -192,7 +192,7 @@ export default function PassportPage() {
       )}
 
       {/* FOOTER */}
-      <div className="bg-[#3b1f0a] px-6 py-8 text-center border-t-2 border-[#c8973a]">
+      <div className="bg-[#56A0D3] px-6 py-8 text-center border-t-2 border-[#003087]">
         <Link
           href="/"
           className="font-mono text-xs text-[#c8973a] opacity-60

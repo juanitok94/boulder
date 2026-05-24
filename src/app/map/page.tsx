@@ -10,18 +10,20 @@ import { getStamps, type StampRecord } from '@/lib/stamps'
 const shops = shopsData as any[]
 const layers = layersData as any[]
 
-// ── Geo helpers ──
-// All shops share roughly the same latitude (Franklin St runs east↔west).
-// We project longitude → horizontal position on a 0-100 scale.
-const allLons = shops.map(s => s.coordinates[0])
-const minLon = Math.min(...allLons)
-const maxLon = Math.max(...allLons)
-const lonSpan = maxLon - minLon || 1
+function toMapX(lng: number, mapWidth: number): number {
+  const THRESHOLD = -79.065
+  const MIN = -79.080
+  const MAX = -79.050
+  if (lng < THRESHOLD) {
+    const t = (lng - MIN) / (THRESHOLD - MIN)
+    return t * mapWidth * 0.20
+  }
+  const t = (lng - THRESHOLD) / (MAX - THRESHOLD)
+  return mapWidth * 0.20 + t * mapWidth * 0.80
+}
 
 function lonToPercent(lon: number, flip: boolean): number {
-  // Default: East (less negative) = left, West (more negative) = right
-  // Flipped: West = left, East = right
-  const pct = ((lon - minLon) / lonSpan) * 100
+  const pct = toMapX(lon, 100)
   return flip ? 100 - pct : pct
 }
 
@@ -83,7 +85,7 @@ export default function MapPage() {
     <main className="min-h-screen bg-[#f5edd8] text-[#1a1208]">
 
       {/* HEADER */}
-      <div className="bg-[#3b1f0a] px-6 py-6 text-center border-b-4 border-[#c8973a]">
+      <div className="bg-[#56A0D3] px-6 py-6 text-center border-b-4 border-[#003087]">
         <Link
           href="/"
           className="font-mono text-[10px] tracking-widest text-[#c8973a] opacity-60
@@ -325,6 +327,8 @@ export default function MapPage() {
                 </button>
               )
             })}
+
+            <span className="absolute bottom-2 right-3 text-xs opacity-40 italic">not to scale</span>
           </div>
 
           {/* Legend */}
@@ -541,7 +545,7 @@ export default function MapPage() {
       </div>
 
       {/* FOOTER */}
-      <div className="bg-[#3b1f0a] px-6 py-6 text-center border-t-2 border-[#c8973a]">
+      <div className="bg-[#56A0D3] px-6 py-6 text-center border-t-2 border-[#003087]">
         <Link
           href="/"
           className="font-mono text-xs text-[#c8973a] opacity-60
