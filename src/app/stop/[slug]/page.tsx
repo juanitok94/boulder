@@ -39,10 +39,10 @@ export default function StopPage({ params }: { params: Promise<{ slug: string }>
     return (
       <main className="min-h-screen bg-[#f5edd8] flex items-center justify-center">
         <div className="text-center px-6">
-          <p className="font-serif text-2xl text-[#3b1f0a] mb-4">Stop not found</p>
+          <p className="font-serif text-2xl text-[#1A1008] mb-4">Stop not found</p>
           <Link
             href="/passport"
-            className="font-mono text-sm text-[#6b3f1e] underline underline-offset-4"
+            className="font-mono text-sm text-[#8B6914] underline underline-offset-4"
           >
             ← Back to Passport
           </Link>
@@ -87,7 +87,7 @@ export default function StopPage({ params }: { params: Promise<{ slug: string }>
         className="px-6 py-14 text-center border-b-4"
         style={{
           backgroundColor: shop.selloColor,
-          borderBottomColor: '#003087',
+          borderBottomColor: '#1A1008',
         }}
       >
         <Link
@@ -131,12 +131,12 @@ export default function StopPage({ params }: { params: Promise<{ slug: string }>
         {!stamped ? (
           <button
             onClick={handleStamp}
-            className="w-full py-4 bg-[#6b3f1e] text-[#f5edd8] text-center
+            className="w-full py-4 bg-[#8B6914] text-[#f5edd8] text-center
                        font-mono text-sm tracking-widest uppercase rounded-sm
-                       shadow-[3px_3px_0_#3b1f0a] hover:translate-x-[-1px]
-                       hover:translate-y-[-1px] hover:shadow-[4px_4px_0_#3b1f0a]
+                       shadow-[3px_3px_0_#1A1008] hover:translate-x-[-1px]
+                       hover:translate-y-[-1px] hover:shadow-[4px_4px_0_#1A1008]
                        active:translate-x-[1px] active:translate-y-[1px]
-                       active:shadow-[1px_1px_0_#3b1f0a]
+                       active:shadow-[1px_1px_0_#1A1008]
                        transition-all"
           >
             Collect This Stamp
@@ -160,15 +160,15 @@ export default function StopPage({ params }: { params: Promise<{ slug: string }>
               <span className="text-white text-3xl">✓</span>
             </div>
 
-            <p className="font-serif text-lg font-bold text-[#3b1f0a]">
+            <p className="font-serif text-lg font-bold text-[#1A1008]">
               {shop.stamp.welcomeLine}
             </p>
-            <p className="font-serif italic text-sm text-[#6b3f1e] mt-1 leading-relaxed">
+            <p className="font-serif italic text-sm text-[#8B6914] mt-1 leading-relaxed">
               {shop.stamp.subLine}
             </p>
 
             {stamps[slug] && (
-              <p className="font-mono text-[10px] text-[#6b3f1e] opacity-50 mt-3">
+              <p className="font-mono text-[10px] text-[#8B6914] opacity-50 mt-3">
                 Stamped {new Date(stamps[slug]).toLocaleDateString('en-US', {
                   weekday: 'long',
                   month: 'long',
@@ -181,12 +181,12 @@ export default function StopPage({ params }: { params: Promise<{ slug: string }>
 
         {/* STORY */}
         <div className="mt-8">
-          <h2 className="font-serif text-xl font-bold text-[#3b1f0a] leading-snug">
+          <h2 className="font-serif text-xl font-bold text-[#1A1008] leading-snug">
             {shop.story.headline}
           </h2>
 
           <div className="relative mt-3">
-            <p className="font-serif text-base text-[#3b1f0a] leading-relaxed transition-all duration-500">
+            <p className="font-serif text-base text-[#1A1008] leading-relaxed transition-all duration-500">
               {showFullStory || !storyNeedsExpand ? storyBody : `${storyPreview}…`}
             </p>
 
@@ -198,8 +198,8 @@ export default function StopPage({ params }: { params: Promise<{ slug: string }>
           {storyNeedsExpand && (
             <button
               onClick={() => setShowFullStory(v => !v)}
-              className="mt-2 font-mono text-xs text-[#6b3f1e] underline underline-offset-4
-                         hover:text-[#3b1f0a] transition-colors"
+              className="mt-2 font-mono text-xs text-[#8B6914] underline underline-offset-4
+                         hover:text-[#1A1008] transition-colors"
             >
               {showFullStory ? 'Show less' : 'Read more'}
             </button>
@@ -208,11 +208,11 @@ export default function StopPage({ params }: { params: Promise<{ slug: string }>
 
         {/* INSIDER TIP */}
         {shop.story.insiderTip && (
-          <div className="mt-6 p-4 bg-[#e8d9b8] border border-[#6b3f1e]/20 rounded-sm">
-            <p className="font-mono text-[10px] tracking-widest text-[#6b3f1e] opacity-60 uppercase mb-1">
+          <div className="mt-6 p-4 bg-[#e8d9b8] border border-[#8B6914]/20 rounded-sm">
+            <p className="font-mono text-[10px] tracking-widest text-[#8B6914] opacity-60 uppercase mb-1">
               Insider Tip
             </p>
-            <p className="font-serif italic text-sm text-[#3b1f0a] leading-relaxed">
+            <p className="font-serif italic text-sm text-[#1A1008] leading-relaxed">
               {shop.story.insiderTip}
             </p>
           </div>
@@ -221,10 +221,10 @@ export default function StopPage({ params }: { params: Promise<{ slug: string }>
         {/* HOURS */}
         <div className="mt-6">
           <div className="flex items-center gap-3 mb-3">
-            <p className="font-mono text-[10px] tracking-widest text-[#6b3f1e] opacity-60 uppercase">
+            <p className="font-mono text-[10px] tracking-widest text-[#8B6914] opacity-60 uppercase">
               Hours
             </p>
-            <div className="flex-1 border-t border-dashed border-[#6b3f1e] opacity-20" />
+            <div className="flex-1 border-t border-dashed border-[#8B6914] opacity-20" />
           </div>
 
           <div className="flex flex-col gap-1">
@@ -240,13 +240,13 @@ export default function StopPage({ params }: { params: Promise<{ slug: string }>
                   ${isToday ? 'bg-white/70 font-bold' : 'bg-white/30'}
                 `}>
                   <span className={`font-mono text-xs uppercase
-                    ${isToday ? 'text-[#3b1f0a]' : 'text-[#6b3f1e] opacity-60'}
+                    ${isToday ? 'text-[#1A1008]' : 'text-[#8B6914] opacity-60'}
                   `}>
                     {isToday ? '→ ' : ''}{dayLabels[day]}
                   </span>
                   <span className={`font-mono text-xs
-                    ${closed ? 'text-[#b84c1a] opacity-60' :
-                      isToday ? 'text-[#3b1f0a]' : 'text-[#3b1f0a] opacity-80'}
+                    ${closed ? 'text-[#8B6914] opacity-60' :
+                      isToday ? 'text-[#1A1008]' : 'text-[#1A1008] opacity-80'}
                   `}>
                     {closed ? 'Closed' : val}
                   </span>
@@ -256,7 +256,7 @@ export default function StopPage({ params }: { params: Promise<{ slug: string }>
           </div>
 
           {shop.hours.note && (
-            <p className="font-serif italic text-xs text-[#6b3f1e] opacity-60 mt-2">
+            <p className="font-serif italic text-xs text-[#8B6914] opacity-60 mt-2">
               {shop.hours.note}
             </p>
           )}
@@ -264,7 +264,7 @@ export default function StopPage({ params }: { params: Promise<{ slug: string }>
 
         {/* PARKING */}
         {shop.story.parkingNote && (
-          <p className="font-mono text-[10px] text-[#6b3f1e] opacity-50 mt-3">
+          <p className="font-mono text-[10px] text-[#8B6914] opacity-50 mt-3">
             🅿 {shop.story.parkingNote}
           </p>
         )}
@@ -274,33 +274,33 @@ export default function StopPage({ params }: { params: Promise<{ slug: string }>
           <div className="mt-8">
             <button
               onClick={() => { setShowTrivia(!showTrivia); setShowAnswer(false) }}
-              className="w-full text-left p-4 bg-white/50 border border-[#6b3f1e]/20
+              className="w-full text-left p-4 bg-white/50 border border-[#8B6914]/20
                          rounded-sm hover:bg-white/70 transition-all"
             >
-              <p className="font-mono text-[10px] tracking-widest text-[#6b3f1e] opacity-60 uppercase mb-1">
+              <p className="font-mono text-[10px] tracking-widest text-[#8B6914] opacity-60 uppercase mb-1">
                 ☕ Local Trivia
               </p>
-              <p className="font-serif text-sm font-bold text-[#3b1f0a]">
+              <p className="font-serif text-sm font-bold text-[#1A1008]">
                 {showTrivia ? 'Hide question' : 'Tap to reveal a question about this stop'}
               </p>
             </button>
 
             {showTrivia && (
-              <div className="mt-3 p-4 bg-white/70 border border-[#6b3f1e]/20 rounded-sm">
-                <p className="font-serif text-sm text-[#3b1f0a] leading-relaxed">
+              <div className="mt-3 p-4 bg-white/70 border border-[#8B6914]/20 rounded-sm">
+                <p className="font-serif text-sm text-[#1A1008] leading-relaxed">
                   {shopTrivia.question}
                 </p>
                 {!showAnswer ? (
                   <button
                     onClick={() => setShowAnswer(true)}
-                    className="mt-3 font-mono text-xs text-[#6b3f1e] underline
-                               underline-offset-4 hover:text-[#3b1f0a] transition-colors"
+                    className="mt-3 font-mono text-xs text-[#8B6914] underline
+                               underline-offset-4 hover:text-[#1A1008] transition-colors"
                   >
                     Show answer
                   </button>
                 ) : (
-                  <div className="mt-3 pt-3 border-t border-dashed border-[#6b3f1e]/20">
-                    <p className="font-serif italic text-sm text-[#6b3f1e] leading-relaxed">
+                  <div className="mt-3 pt-3 border-t border-dashed border-[#8B6914]/20">
+                    <p className="font-serif italic text-sm text-[#8B6914] leading-relaxed">
                       {shopTrivia.answer}
                     </p>
                   </div>
@@ -317,8 +317,8 @@ export default function StopPage({ params }: { params: Promise<{ slug: string }>
               href={`https://${shop.website}`}
               target="_blank"
               rel="noopener noreferrer"
-              className="font-mono text-xs text-[#6b3f1e] underline underline-offset-4
-                         hover:text-[#3b1f0a] transition-colors"
+              className="font-mono text-xs text-[#8B6914] underline underline-offset-4
+                         hover:text-[#1A1008] transition-colors"
             >
               Website ↗
             </a>
@@ -328,8 +328,8 @@ export default function StopPage({ params }: { params: Promise<{ slug: string }>
               href={`https://instagram.com/${shop.instagram}`}
               target="_blank"
               rel="noopener noreferrer"
-              className="font-mono text-xs text-[#6b3f1e] underline underline-offset-4
-                         hover:text-[#3b1f0a] transition-colors"
+              className="font-mono text-xs text-[#8B6914] underline underline-offset-4
+                         hover:text-[#1A1008] transition-colors"
             >
               Instagram ↗
             </a>
@@ -339,8 +339,8 @@ export default function StopPage({ params }: { params: Promise<{ slug: string }>
               href={`https://www.google.com/maps/place/?q=place_id:${shop.placeId}`}
               target="_blank"
               rel="noopener noreferrer"
-              className="font-mono text-xs text-[#6b3f1e] underline underline-offset-4
-                         hover:text-[#3b1f0a] transition-colors"
+              className="font-mono text-xs text-[#8B6914] underline underline-offset-4
+                         hover:text-[#1A1008] transition-colors"
             >
               Directions ↗
             </a>
@@ -361,9 +361,9 @@ export default function StopPage({ params }: { params: Promise<{ slug: string }>
               alert('Link copied!')
             }
           }}
-          className="mt-4 w-full py-3 border border-[#6b3f1e]/30
+          className="mt-4 w-full py-3 border border-[#8B6914]/30
                      rounded-sm font-mono text-xs tracking-widest
-                     uppercase text-[#6b3f1e] hover:bg-white/50
+                     uppercase text-[#8B6914] hover:bg-white/50
                      transition-all"
         >
           Share This Stop
@@ -375,11 +375,11 @@ export default function StopPage({ params }: { params: Promise<{ slug: string }>
             {/* 16th St crossing callout */}
             {crossing16th && (
               <div className="flex items-center gap-3 mb-4">
-                <div className="flex-1 h-px bg-[#b84c1a] opacity-40" />
-                <span className="font-mono text-[10px] text-[#b84c1a] tracking-widest px-2">
+                <div className="flex-1 h-px bg-[#8B6914] opacity-40" />
+                <span className="font-mono text-[10px] text-[#8B6914] tracking-widest px-2">
                   You crossed 16th St
                 </span>
-                <div className="flex-1 h-px bg-[#b84c1a] opacity-40" />
+                <div className="flex-1 h-px bg-[#8B6914] opacity-40" />
               </div>
             )}
 
@@ -387,13 +387,13 @@ export default function StopPage({ params }: { params: Promise<{ slug: string }>
               {prevStop ? (
                 <Link
                   href={`/stop/${prevStop.id}`}
-                  className="flex-1 p-3 bg-white/50 border border-[#6b3f1e]/20 rounded-sm
+                  className="flex-1 p-3 bg-white/50 border border-[#8B6914]/20 rounded-sm
                              hover:bg-white/80 transition-all text-center"
                 >
-                  <p className="font-mono text-[9px] text-[#6b3f1e] opacity-50 uppercase">
+                  <p className="font-mono text-[9px] text-[#8B6914] opacity-50 uppercase">
                     ← Stop {prevStop.passportStop}
                   </p>
-                  <p className="font-serif text-xs font-bold text-[#3b1f0a] mt-0.5 truncate">
+                  <p className="font-serif text-xs font-bold text-[#1A1008] mt-0.5 truncate">
                     {prevStop.name}
                   </p>
                 </Link>
@@ -404,23 +404,23 @@ export default function StopPage({ params }: { params: Promise<{ slug: string }>
               {nextStop ? (
                 <Link
                   href={`/stop/${nextStop.id}`}
-                  className="flex-1 p-3 bg-white/50 border border-[#6b3f1e]/20 rounded-sm
+                  className="flex-1 p-3 bg-white/50 border border-[#8B6914]/20 rounded-sm
                              hover:bg-white/80 transition-all text-center"
                 >
-                  <p className="font-mono text-[9px] text-[#6b3f1e] opacity-50 uppercase">
+                  <p className="font-mono text-[9px] text-[#8B6914] opacity-50 uppercase">
                     Stop {nextStop.passportStop} →
                   </p>
-                  <p className="font-serif text-xs font-bold text-[#3b1f0a] mt-0.5 truncate">
+                  <p className="font-serif text-xs font-bold text-[#1A1008] mt-0.5 truncate">
                     {nextStop.name}
                   </p>
                 </Link>
               ) : (
                 <Link
                   href="/passport"
-                  className="flex-1 p-3 bg-[#6b3f1e] rounded-sm
-                             hover:bg-[#3b1f0a] transition-all text-center"
+                  className="flex-1 p-3 bg-[#8B6914] rounded-sm
+                             hover:bg-[#1A1008] transition-all text-center"
                 >
-                  <p className="font-mono text-[9px] text-[#c8973a] opacity-70 uppercase">
+                  <p className="font-mono text-[9px] text-[#f5edd8] opacity-70 uppercase">
                     End of the road
                   </p>
                   <p className="font-serif text-xs font-bold text-[#f5edd8] mt-0.5">
@@ -435,10 +435,10 @@ export default function StopPage({ params }: { params: Promise<{ slug: string }>
       </div>
 
       {/* FOOTER */}
-      <div className="bg-[#56A0D3] px-6 py-6 text-center border-t-2 border-[#003087]">
+      <div className="bg-[#CFB87C] px-6 py-6 text-center border-t-2 border-[#1A1008]">
         <Link
           href="/passport"
-          className="font-mono text-xs text-[#c8973a] opacity-60
+          className="font-mono text-xs text-[#1A1008] opacity-60
                      hover:opacity-100 transition-opacity tracking-widest uppercase"
         >
           ← Back to Passport
