@@ -10,16 +10,20 @@ import { getStamps, type StampRecord } from '@/lib/stamps'
 const shops = shopsData as any[]
 const layers = layersData as any[]
 
+const TOTAL_CORE = 10
+
+// Core stops use uniform schematic spacing — coords cluster too tightly for a legible map
+function coreStopX(passportStop: number, flip: boolean): number {
+  const pct = 5 + ((passportStop - 1) / (TOTAL_CORE - 1)) * 90
+  return flip ? 100 - pct : pct
+}
+
+// Non-core background dots still use coordinates
 function toMapX(lng: number, mapWidth: number): number {
-  const THRESHOLD = -105.275
-  const MIN = -105.305
-  const MAX = -105.255
-  if (lng < THRESHOLD) {
-    const t = (lng - MIN) / (THRESHOLD - MIN)
-    return t * mapWidth * 0.20
-  }
-  const t = (lng - THRESHOLD) / (MAX - THRESHOLD)
-  return mapWidth * 0.20 + t * mapWidth * 0.80
+  const MIN = -105.290
+  const MAX = -105.258
+  const t = Math.max(0, Math.min(1, (lng - MIN) / (MAX - MIN)))
+  return t * mapWidth
 }
 
 function lonToPercent(lon: number, flip: boolean): number {
@@ -27,10 +31,9 @@ function lonToPercent(lon: number, flip: boolean): number {
   return flip ? 100 - pct : pct
 }
 
-// 16th St / central Pearl midpoint
-const I240_LON = -105.275
+// 16th St divider in schematic space: between stop 3 (25%) and stop 4 (35%)
+const DIVIDER_PCT = 30
 
-// Sort core stops for the route line
 const coreStops = shops
   .filter(s => s.passportType === 'core')
   .sort((a, b) => a.passportStop - b.passportStop)
@@ -59,7 +62,6 @@ export default function MapPage() {
     setActiveLayers(prev => {
       const next = new Set(prev)
       if (next.has(layerId)) {
-        // Don't allow deselecting coffee (passport layer)
         if (layerId === 'coffee') return next
         next.delete(layerId)
       } else {
@@ -69,7 +71,6 @@ export default function MapPage() {
     })
   }
 
-  // Filter visible shops: always show passport stops, plus active layers
   const visibleShops = useMemo(() => {
     return shops.filter(s => {
       if (s.passportType === 'core' || s.passportType === 'bonus') return true
@@ -78,8 +79,9 @@ export default function MapPage() {
   }, [activeLayers])
 
   const selectedShop = selectedStop ? shops.find(s => s.id === selectedStop) : null
-
   const coreStamped = coreStops.filter(s => stamps[s.id]).length
+
+  const dividerX = flipped ? 100 - DIVIDER_PCT : DIVIDER_PCT
 
   return (
     <main className="min-h-screen bg-[#f5edd8] text-[#1a1208]">
@@ -155,7 +157,7 @@ export default function MapPage() {
           </div>
 
           {/* The road */}
-          <div className="relative h-[340px]">
+          <div className="relative h-[440px]">
 
             {/* Road line */}
             <div
@@ -163,10 +165,10 @@ export default function MapPage() {
               style={{ top: '50%', transform: 'translateY(-50%)' }}
             />
 
-            {/* I-240 crossing */}
+            {/* 16th St crossing */}
             <div
               className="absolute top-0 bottom-0 w-px transition-all duration-500"
-              style={{ left: `${lonToPercent(I240_LON, flipped)}%` }}
+              style={{ left: `${dividerX}%` }}
             >
               <div className="absolute inset-0 bg-[#8B6914] opacity-30" />
               <div className="absolute top-2 left-1/2 -translate-x-1/2 whitespace-nowrap">
@@ -177,31 +179,18 @@ export default function MapPage() {
             </div>
 
             {/* Zone labels */}
-            {(() => {
-              const i240pct = lonToPercent(I240_LON, flipped)
-              const northCenter = flipped
-                ? i240pct + (100 - i240pct) / 2
-                : i240pct / 2
-              const southCenter = flipped
-                ? i240pct / 2
-                : i240pct + (100 - i240pct) / 2
-              return (
-                <>
-                  <div
-                    className="absolute font-mono text-[8px] tracking-widest text-[#8B6914] opacity-30 uppercase transition-all duration-500"
-                    style={{ top: '8px', left: `${northCenter}%`, transform: 'translateX(-50%)' }}
-                  >
-                    West Pearl
-                  </div>
-                  <div
-                    className="absolute font-mono text-[8px] tracking-widest text-[#8B6914] opacity-30 uppercase transition-all duration-500"
-                    style={{ top: '8px', left: `${southCenter}%`, transform: 'translateX(-50%)' }}
-                  >
-                    East Pearl
-                  </div>
-                </>
-              )
-            })()}
+            <div
+              className="absolute font-mono text-[8px] tracking-widest text-[#8B6914] opacity-30 uppercase transition-all duration-500"
+              style={{ top: '8px', left: `${dividerX / 2}%`, transform: 'translateX(-50%)' }}
+            >
+              {flipped ? 'East Pearl' : 'West Pearl'}
+            </div>
+            <div
+              className="absolute font-mono text-[8px] tracking-widest text-[#8B6914] opacity-30 uppercase transition-all duration-500"
+              style={{ top: '8px', left: `${dividerX + (100 - dividerX) / 2}%`, transform: 'translateX(-50%)' }}
+            >
+              {flipped ? 'West Pearl' : 'East Pearl'}
+            </div>
 
             {/* Non-passport layer dots (background) */}
             {visibleShops
@@ -209,9 +198,8 @@ export default function MapPage() {
               .map(shop => {
                 const x = lonToPercent(shop.coordinates[0], flipped)
                 const layerColor = layers.find(l => l.id === shop.layers[0])?.color || '#999'
-                // Stagger vertically so dots don't pile up
                 const hash = shop.id.charCodeAt(0) + shop.id.charCodeAt(1)
-                const yOffset = (hash % 7) * 18 - 63 // spread above/below road
+                const yOffset = (hash % 7) * 18 - 63
                 return (
                   <button
                     key={shop.id}
@@ -232,7 +220,7 @@ export default function MapPage() {
                 )
               })}
 
-            {/* Bonus stops (slightly larger, diamond shape via rotation) */}
+            {/* Bonus stops */}
             {bonusStops.map(shop => {
               const x = lonToPercent(shop.coordinates[0], flipped)
               const stamped = !!stamps[shop.id]
@@ -259,13 +247,12 @@ export default function MapPage() {
               )
             })}
 
-            {/* Core passport stops (largest, numbered) */}
+            {/* Core passport stops — uniform schematic spacing */}
             {coreStops.map(shop => {
-              const x = lonToPercent(shop.coordinates[0], flipped) + (shop.passportStop === 10 ? 1.5 : 0)
+              const x = coreStopX(shop.passportStop, flipped)
               const stamped = !!stamps[shop.id]
-              // Alternate above/below road for readability
               const above = shop.passportStop % 2 === 1
-              const yOffset = above ? -40 : 40
+              const yOffset = above ? -72 : 72
               return (
                 <button
                   key={shop.id}
@@ -305,7 +292,7 @@ export default function MapPage() {
 
                   {/* Name label */}
                   <p className={`
-                    text-center font-mono text-[9px] text-[#1a1208] mt-1 leading-tight w-16 break-words
+                    text-center font-mono text-[8px] mt-1 leading-tight w-12 break-words
                     ${stamped ? 'text-[#1A1008]' : 'text-[#8B6914] opacity-60'}
                   `}>
                     {shop.name}
@@ -314,7 +301,7 @@ export default function MapPage() {
               )
             })}
 
-            <span className="absolute bottom-2 right-3 text-xs opacity-40 italic">not to scale</span>
+            <span className="absolute bottom-2 right-3 text-xs opacity-40 italic">schematic · not to scale</span>
           </div>
 
           {/* Legend */}
@@ -359,13 +346,11 @@ export default function MapPage() {
               borderTopStyle: 'solid',
             }}
           >
-            {/* Handle bar */}
             <div className="flex justify-center pt-3 pb-1">
               <div className="w-10 h-1 rounded-full bg-[#8B6914]/20" />
             </div>
 
             <div className="px-6 pb-8 pt-2">
-              {/* Header row */}
               <div className="flex items-start justify-between gap-4">
                 <div className="flex-1">
                   <p className="font-mono text-[10px] tracking-widest text-[#8B6914] opacity-50 uppercase mb-1">
@@ -461,7 +446,7 @@ export default function MapPage() {
         </div>
       )}
 
-      {/* ROUTE LIST (compact, below map) */}
+      {/* ROUTE LIST */}
       <div className="max-w-2xl mx-auto px-4 pb-6">
         <div className="flex items-center gap-3 mb-3">
           <h2 className="font-serif text-lg font-bold text-[#1A1008]">
@@ -476,7 +461,7 @@ export default function MapPage() {
         <div className="flex flex-col gap-1.5">
           {coreStops.map((shop, i) => {
             const stamped = !!stamps[shop.id]
-            const showDivider = i === 4 // After stop 4, before stop 5
+            const showDivider = i === 3 // Before stop 4 (Laughing Goat, first central zone stop)
             return (
               <div key={shop.id}>
                 {showDivider && (
